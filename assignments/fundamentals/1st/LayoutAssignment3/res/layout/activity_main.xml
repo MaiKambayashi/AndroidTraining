@@ -14,8 +14,87 @@
     <!-- Hint: 3. 区切り線を引く専用の UI はありません。背景色を android:background="#393939" にして、区切り線ぽく扱う工夫が必要です -->
     <!-- Hint: 4. 均等割付するボタンの画像は、左から android:src="@android:drawable/ic_menu_call", android:src="@android:drawable/ic_menu_send", android:src="@android:drawable/ic_menu_share" です -->
     <!-- TODO: 上記のまとまりの下に、幅 1 dp の区切り線を引く -->
-
-
+    <RelativeLayout
+        android:layout_alignParentTop="true"
+        android:id="@+id/my_area"
+        android:padding="4dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+	    <RelativeLayout
+	        android:id="@+id/profile"
+	        android:layout_centerVertical="true"
+   		    android:layout_alignParentLeft="true"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content" >
+	        <ImageView
+	            android:background="@drawable/frame"
+	            android:id="@+id/profile_image"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_centerHorizontal="true"
+		        android:src="@drawable/ic_launcher" />            
+	        <TextView
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_below="@+id/profile_image"
+	            android:text="プロフィール" />
+	    </RelativeLayout>
+		<RelativeLayout
+	        android:layout_toRightOf="@+id/profile"
+		    android:layout_alignParentRight="true"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content" >
+			<RelativeLayout
+			    android:id="@+id/nickname_setting"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content" >
+		        <ImageView
+	    	        android:id="@+id/setting_button"
+		    	    android:layout_width="wrap_content"
+		        	android:layout_height="wrap_content"
+		        	android:layout_alignParentRight="true"
+		        	android:src="@drawable/ic_menu_manage" />            
+		        <TextView
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:layout_alignParentLeft="true"
+		            android:layout_alignBottom="@+id/setting_button"
+		            android:text="ハム太郎" />
+		        <TextView
+			        android:layout_toRightOf="@+id/nickname_setting_border"
+		            android:layout_width="match_parent"
+		            android:layout_height="1dp"
+		            android:background="#393939"
+		            android:layout_below="@+id/setting_button" />
+		    </RelativeLayout>
+			<LinearLayout
+			    android:layout_below="@+id/nickname_setting"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content" >
+		        <ImageView
+		    	    android:layout_width="wrap_content"
+		        	android:layout_height="wrap_content"
+		        	android:layout_weight="1"
+		        	android:src="@drawable/ic_menu_call" />            
+		        <ImageView
+		    	    android:layout_width="wrap_content"
+		        	android:layout_height="wrap_content"
+		        	android:layout_weight="1"
+		        	android:src="@drawable/ic_menu_send" />            
+		        <ImageView
+		    	    android:layout_width="wrap_content"
+		        	android:layout_height="wrap_content"
+		        	android:layout_weight="1"
+		        	android:src="@drawable/ic_menu_share" />            
+    	    </LinearLayout>
+	    </RelativeLayout>
+	</RelativeLayout>
+    <TextView
+       android:layout_below="@+id/my_area"
+       android:layout_width="match_parent"
+       android:layout_height="1dp"
+       android:background="#393939" />
+    
     <!-- TODO: 左側から順に、下記の View を配置していき、そのまとまりを画面下部に揃える -->
     <!-- 1. ic_launcher のアイコンと、その下に メニュー の文字を表示し、アイコンの右肩に 30 と書かれたバッチを表示するボタン -->
     <!-- 2. 幅 1dp の 縦の区切り線 -->
@@ -27,7 +106,106 @@
     <!-- Hint: 2. ボタン用の背景は android:background="@drawable/button_state_list" にします -->
     <!-- Hint: 3. バッチ用の背景は android:background="@drawable/badge" にします -->
     <!-- Hint: 4. TextView には、文字の隣に drawable を表示する属性があります -->
-
+    <TextView
+       android:id="@+id/bottom_top_border"
+       android:layout_above="@+id/bottom"
+       android:layout_width="match_parent"
+       android:layout_height="1dp"
+       android:background="#393939" />
+	<RelativeLayout
+	    android:id="@+id/bottom"
+	    android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+		<RelativeLayout
+	        android:id="@+id/menu"
+            android:layout_toLeftOf="@+id/post"
+            android:layout_alignParentLeft="true"
+            android:layout_margin="4dp"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content" >
+	        <ImageView
+	            android:id="@+id/menu_image"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_centerHorizontal="true"
+		        android:src="@drawable/ic_launcher" />            
+	        <TextView
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_alignTop="@+id/menu_image"
+	            android:layout_alignRight="@+id/menu_image"
+	            android:background="@drawable/badge"
+	            android:text="30" />
+	        <TextView
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+		        android:layout_centerHorizontal="true"
+	            android:layout_below="@+id/menu_image"
+	            android:text="メニュー" />
+	    </RelativeLayout>
+	    <TextView
+	       android:layout_toLeftOf="@+id/post"
+	       android:layout_width="1dp"
+	       android:layout_alignParentTop="true"
+	       android:layout_alignBottom="@+id/menu"
+	       android:layout_height="wrap_content"
+	       android:background="#393939" />
+		<RelativeLayout
+	        android:id="@+id/post"
+		    android:layout_centerInParent="true"
+		    android:layout_margin="4dp"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content" >
+	        <ImageView
+	            android:id="@+id/post_image"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+	            android:layout_centerVertical="true"
+		        android:src="@drawable/ic_launcher" />            
+	        <TextView
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_toRightOf="@+id/post_image"
+	            android:layout_centerVertical="true"
+	            android:text="つぶやきを投稿" />
+	    </RelativeLayout>
+	    <TextView
+	       android:layout_toRightOf="@+id/post"
+	       android:layout_width="1dp"
+	       android:layout_height="wrap_content"
+	       android:layout_alignParentTop="true"
+	       android:layout_alignBottom="@+id/recent"
+	       android:background="#393939" />
+		<RelativeLayout
+	        android:id="@+id/recent"
+            android:layout_toRightOf="@+id/post"
+            android:layout_margin="4dp"
+            android:layout_alignParentRight="true"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content" >
+   	        <ImageView
+	            android:id="@+id/recent_image"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_centerHorizontal="true"
+		        android:src="@drawable/ic_launcher" />            
+	        <TextView
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+		        android:layout_centerHorizontal="true"
+	            android:layout_below="@+id/recent_image"
+	            android:text="最近" />
+	    </RelativeLayout>			    
+	</RelativeLayout>
     <!-- TODO: 上記の View の上に、お知らせを表示する View を配置する -->
     <!-- Hint: 1. お知らせを表示する View の背景は android:background="@drawable/notify_button_state_list" にします -->
+    <TextView
+       android:layout_above="@+id/bottom_top_border"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:padding="10dp"
+       android:background="@drawable/notify_button_state_list"
+       android:textColor="#fffafa"
+       android:text="30件のお知らせがあります！" />
 </RelativeLayout>
