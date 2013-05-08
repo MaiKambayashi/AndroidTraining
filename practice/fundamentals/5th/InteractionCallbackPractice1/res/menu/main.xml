@@ -1,19 +1,30 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
+<!-- 
+インタラクション制御 実習２
+ActionBarSherlock を参照する実習用プロジェクトで OptionsMenu を扱った場合の、
+OptionsMenu の表示のされ方の違いを、エミュレータを用いて、画面の大きさを元に考察してレポートに記述してください
+（android:showAsActionにwithTextをつけると違いが出てきます。）
 
+アイコンとwithTextを設定していた場合、画面の大きさに応じて、アイコンのみ表示するか、アイコンとテキスト両方を表示するか、
+が、自動的に判断される。
+ -->
     <item
+  		android:icon="@android:drawable/ic_menu_mapmode"
         android:id="@+id/action_settings"
         android:orderInCategory="100"
-        android:showAsAction="never"
+        android:showAsAction="ifRoom|withText"
         android:title="@string/action_settings"/>
     <item
+        android:icon="@android:drawable/ic_menu_add"
         android:id="@+id/action_login"
         android:orderInCategory="100"
-        android:showAsAction="never"
+        android:showAsAction="ifRoom|withText"
         android:title="@string/action_login"/>
     <item
+  		android:icon="@android:drawable/ic_menu_revert"
         android:id="@+id/action_refresh"
         android:orderInCategory="100"
-        android:showAsAction="never"
+        android:showAsAction="ifRoom|withText"
         android:title="@string/action_refresh"/>
     
 </menu>
