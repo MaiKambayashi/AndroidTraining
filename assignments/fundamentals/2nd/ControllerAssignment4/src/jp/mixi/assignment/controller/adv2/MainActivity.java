@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
+import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -29,7 +30,7 @@ import android.widget.Toast;
  */
 public class MainActivity extends Activity {
     public static final String TAG = MainActivity.class.getSimpleName();
-
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,11 +42,18 @@ public class MainActivity extends Activity {
         super.onStart();
 
         // ヘッドセットの接続状態を監視し、接続状態の変化があった時のブロードキャストメッセージを受信する
-        registerReceiver(new MyBroadcastReceiver(), new IntentFilter(Intent.ACTION_HEADSET_PLUG));
+        registerReceiver(MyBroadcastReceiver, new IntentFilter(Intent.ACTION_HEADSET_PLUG));
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+    	unregisterReceiver(MyBroadcastReceiver);
+
     }
 
     // ブロードキャストのメッセージを受け取るクラス
-    private class MyBroadcastReceiver extends BroadcastReceiver {
+    private BroadcastReceiver MyBroadcastReceiver = new BroadcastReceiver() {
 
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -53,5 +61,6 @@ public class MainActivity extends Activity {
             Log.v(TAG, "Broadcast intent received.");
             Toast.makeText(MainActivity.this, "Headset broadcast received.", Toast.LENGTH_LONG).show();
         }
-    }
+        
+    };
 }

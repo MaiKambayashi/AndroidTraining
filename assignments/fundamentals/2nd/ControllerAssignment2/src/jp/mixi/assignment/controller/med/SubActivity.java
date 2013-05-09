@@ -6,6 +6,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * TODO: 課題2
@@ -34,6 +35,9 @@ public class SubActivity extends Activity implements TextWatcher {
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
+        String saved_text = savedInstanceState.getString("TEXT");
+        TextView text = (TextView) findViewById(R.id.SyncedText);
+        text.setText(saved_text);
     }
 
     /**
@@ -42,6 +46,8 @@ public class SubActivity extends Activity implements TextWatcher {
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
+        TextView text = (TextView) findViewById(R.id.SyncedText);
+        outState.putString("TEXT", text.getText().toString());
     }
 
     @Override
