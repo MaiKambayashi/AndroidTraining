@@ -4,9 +4,13 @@ package jp.mixi.practice.intent.med;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
+import android.content.BroadcastReceiver;
 import android.content.Intent;
+import android.content.IntentFilter;
 
 public class MainActivity extends Activity {
+	private BroadcastReceiver mReceiver = new MyBroadcastReceiver();
+	
     public static final String ACTION_FIRST = "jp.mixi.practice.intent.med.android.intent.action.FIRST";
     public static final String ACTION_SECOND = "jp.mixi.practice.intent.med.android.intent.action.SECOND";
     public static final String ACTION_THIRD = "jp.mixi.practice.intent.med.android.intent.action.THIRD";
@@ -19,13 +23,20 @@ public class MainActivity extends Activity {
         View button1 = findViewById(R.id.CallAction1);
         View button2 = findViewById(R.id.CallAction2);
         View button3 = findViewById(R.id.CallAction3);
-
+        
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(ACTION_FIRST);
+        filter.addAction(ACTION_SECOND);
+        filter.addAction(ACTION_THIRD);
+        registerReceiver(mReceiver, filter);
+        
         // TODO それぞれ、Broadcast を受け取ったら Log.v(String, String) を利用して、ログ出力にどの Action を受信したかを表示する処理を書くこと
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // TODO ここに、ACTION_FIRST を呼び出す処理を書く
             	Intent intent = new Intent();
+            	intent.putExtra("action_name", "ACTION_FIRST");
                 intent.setAction(ACTION_FIRST);
                 sendBroadcast(intent);
             }
@@ -35,6 +46,7 @@ public class MainActivity extends Activity {
             public void onClick(View v) {
                 // TODO ここに、ACTION_SECOND を呼び出す処理を書く
             	Intent intent = new Intent();
+            	intent.putExtra("action_name", "ACTION_SECOND");
                 intent.setAction(ACTION_SECOND);
                 sendBroadcast(intent);
 
@@ -45,10 +57,18 @@ public class MainActivity extends Activity {
             public void onClick(View v) {
                 // TODO ここに、ACTION_THIRD を呼び出す処理を書く
             	Intent intent = new Intent();
+            	intent.putExtra("action_name", "ACTION_THIRD");
                 intent.setAction(ACTION_THIRD);
                 sendBroadcast(intent);
 
             }
         });
     }
+    
+    @Override
+    protected void onStop() {
+        super.onStop();
+        unregisterReceiver(mReceiver);
+    }
+     
 }
