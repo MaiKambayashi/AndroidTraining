@@ -22,7 +22,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-            
+        <activity
+            android:name="jp.mixi.practice.serializable.User"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="jp.mixi.practice.serializable.ResultActivity"
+            android:label="@string/app_name" >
+        </activity>
     </application>
 
 </manifest>

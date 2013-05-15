@@ -7,12 +7,46 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".MainActivity" >
+    
+    <TextView
+        android:id="@+id/userName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Name" />
 
+    <TextView
+        android:id="@+id/userAge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/userName"
+        android:hint="Age" />
+    
+    <TextView
+        android:id="@+id/userHamster"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/userAge"
+        android:hint="Hamster" />
+    
+    <TextView
+        android:id="@+id/userSunflower"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/userHamster"
+        android:hint="Sunflower" />
+
+    <TextView
+        android:id="@+id/userSeed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/userSunflower"
+        android:hint="Seed" />
+    
     <Button
         android:id="@+id/clear"
-         android:layout_width="wrap_content"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="all clear"
-        />
+        android:layout_below="@+id/userSeed"
+        android:text="all clear" />
 
 </RelativeLayout>
