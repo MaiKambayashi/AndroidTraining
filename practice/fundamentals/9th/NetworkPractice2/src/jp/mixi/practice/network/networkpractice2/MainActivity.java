@@ -1,13 +1,17 @@
 package jp.mixi.practice.network.networkpractice2;
 
-import android.app.Activity;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.LoaderManager;
+import android.support.v4.app.LoaderManager.LoaderCallbacks;
+import android.support.v4.content.Loader;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.TextView;
 
-public class MainActivity extends Activity {
+public class MainActivity extends FragmentActivity implements LoaderCallbacks<String> {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,7 +21,9 @@ public class MainActivity extends Activity {
         buttonGet.setOnClickListener(new OnClickListener() {
 
             public void onClick(View v) {
-                // http getの処理を書く
+                LoaderManager manager = getSupportLoaderManager();
+                Bundle argsForLoader = new Bundle();
+                manager.initLoader(0, argsForLoader, MainActivity.this);
             }
         });
         
@@ -25,7 +31,9 @@ public class MainActivity extends Activity {
         buttonPost.setOnClickListener(new OnClickListener() {
 
             public void onClick(View v) {
-                // http postの処理を書く
+                LoaderManager manager = getSupportLoaderManager();
+                Bundle argsForLoader = new Bundle();
+                manager.initLoader(1, argsForLoader, MainActivity.this);
             }
         });
     }
@@ -36,5 +44,29 @@ public class MainActivity extends Activity {
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
+
+	@Override
+	public Loader<String> onCreateLoader(int arg0, Bundle arg1) {
+    	TextView accessUrl = (TextView) findViewById(R.id.accessUrl);
+   	 	TextView httpBody = (TextView) findViewById(R.id.httpBody);
+        switch (arg0) {
+        case 0:
+            return new GetTaskLoader(this, accessUrl.getText().toString());
+        case 1:
+            return new PostTaskLoader(this, accessUrl.getText().toString(), httpBody.getText().toString());
+        default:
+            return null;
+        }
+	}
+
+	@Override
+	public void onLoadFinished(Loader<String> arg0, String arg1) {
+        TextView responce = (TextView) findViewById(R.id.responce);
+        responce.setText(arg1);
+    }
+
+	@Override
+	public void onLoaderReset(Loader<String> arg0) {
+	}
 
 }

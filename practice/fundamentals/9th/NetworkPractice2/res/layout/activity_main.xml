@@ -38,10 +38,14 @@
             android:layout_height="wrap_content"
             android:text="post" />
 
-        <TextView
-            android:id="@+id/responce"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+		    android:layout_height="match_parent" >
+	        <TextView
+	            android:id="@+id/responce"
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content" />
+        </ScrollView>
     </LinearLayout>
 
 </RelativeLayout>
