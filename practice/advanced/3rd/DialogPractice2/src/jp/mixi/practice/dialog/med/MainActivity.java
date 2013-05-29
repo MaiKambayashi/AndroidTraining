@@ -1,8 +1,10 @@
 
 package jp.mixi.practice.dialog.med;
 
-import android.app.Activity;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
+import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.MenuItem;
@@ -10,7 +12,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-public class MainActivity extends Activity {
+public class MainActivity extends FragmentActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,10 +51,19 @@ public class MainActivity extends Activity {
         getMenuInflater().inflate(R.menu.main, menu);
     }
 
+    private void showPracticeDialog() {
+        DialogFragment listItemSelectionDialogFragment = new ListItemSelectionDialogFragment();
+        listItemSelectionDialogFragment.show(getSupportFragmentManager(), "list_item_selection_dialog_fragment");
+    }
+
     @Override
     public boolean onContextItemSelected(MenuItem item) {
         // TODO: 長押しメニューの、削除、の項目の選択をハンドリングして、確認のためのダイアログを
         // ListItemSelectionDialogFragment を使用して表示する
+    	if(item.getItemId() == R.id.delete) {
+    		//Log.v("message",String.valueOf(super.onContextItemSelected(item)));
+    		showPracticeDialog();
+        };
         return super.onContextItemSelected(item);
     }
 }
